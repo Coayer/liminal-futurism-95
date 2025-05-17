@@ -1,0 +1,5 @@
+generated_images/
+mood_board/
+venv/
+.env
+.DS_Store
