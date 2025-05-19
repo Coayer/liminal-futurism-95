@@ -37,16 +37,6 @@ body {
 
 #splash-screen .liminal {
     font-family: "FranklinGothicBook", sans-serif;
-    font-size: 2.2rem; /* slightly smaller */
-    margin-bottom: -0.3rem; /* bring it closer to the next line */
-    margin-left: -175px;
-    display: inline-block;
-    letter-spacing: normal;
-    line-height: 1;
-}
-
-#splash-screen .liminal {
-    font-family: "FranklinGothicBook", sans-serif;
     font-size: 2rem;
     margin-bottom: -0.8rem;
     margin-left: -10.5rem;

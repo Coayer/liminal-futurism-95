@@ -1,4 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
+    let idleMouseTimer;
+    let forceMouseHide = false;
+
+    document.body.style.cursor = "none";
+
+    document.body.addEventListener("mousemove", () => {
+        if (forceMouseHide) {
+            return;
+        }
+
+        document.body.style.cursor = "";
+
+        clearTimeout(idleMouseTimer);
+
+        idleMouseTimer = setTimeout(() => {
+            document.body.style.cursor = "none";
+
+            forceMouseHide = true;
+
+            setTimeout(() => {
+                forceMouseHide = false;
+            }, 200);
+        }, 1000);
+    });
+
     const splashScreen = document.getElementById("splash-screen");
     const slideshow = document.getElementById("slideshow");
     const currentImage = document.getElementById("current-image");

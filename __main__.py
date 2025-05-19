@@ -44,7 +44,7 @@ def generate_image():
     """Generate an image using the provided prompt with Gemini image generation model"""
     client = genai.Client(api_key=GEMINI_API_KEY)
 
-    image_prompt = f"1950s futurism, sci fi, landscape, surreal, LIMINAL space, {random.choice(['sunlight', 'mid century modern', ''])}, gradient blue sky, hazy, flat colors, {random.choice(['desert', 'green Northern', 'Southern', 'coastal'])} California, no signature, acrylic on board painting"
+    image_prompt = f"1950s futurism, sci fi, landscape, abstract, surreal, LIMINAL space, {random.choice(['sunlight', 'mid century modern', ''])}, gradient blue sky, hazy, flat colors, {random.choice(['desert', 'Southern brush ridges', 'Southern coastal', 'coastal ridges Marin'])} California, 4k, acrylic painting"
 
     logger.info(f"Generating image with prompt: {image_prompt}")
 
@@ -84,7 +84,6 @@ def generate_image():
     )
 
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    saved = False
 
     try:
         for chunk in client.models.generate_content_stream(
@@ -107,11 +106,9 @@ def generate_image():
                 filename = f"liminal_space_{timestamp}{file_extension}"
                 saved_path = save_binary_file(filename, data_buffer)
                 unseen_generated_images.put(saved_path.name)
+                logger.info(f"Image saved: {saved_path}")
             else:
                 logger.info(f"Text response: {chunk.text}")
-
-        if not saved:
-            logger.warning("No image was generated or saved.")
     except Exception as e:
         logger.error(f"Error generating image: {str(e)}"[:150])
 
